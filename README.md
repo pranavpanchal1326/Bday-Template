@@ -1,94 +1,254 @@
-# Premium Vintage Birthday Keepsake Template
+<div align="center">
 
-An ultra-premium, interactive digital birthday keepsake designed with a stunning vintage botanical and cinematic film aesthetic. Built entirely using core web technologies (**pure HTML, modular CSS, and Vanilla JavaScript**) alongside high-fidelity physics and animation libraries (**GSAP & Howler.js**).
+<br/>
 
-This is a **completely generic, privacy-cleaned, plug-and-play template** ready to be customized and pushed to GitHub or deployed directly to Vercel/Netlify.
+```
+✦  B I R T H D A Y  K E E P S A K E  ✦
+```
 
----
+# 🎞️ Birthday Keepsake Template
 
-## 🎨 Design System & Aesthetics
+### *A cinematic, vintage-styled digital tribute — built for the ones you love.*
 
-* **Warm Antiqued Palette:** Powered by custom CSS variables (`css/variables.css`) built around HSL-curated color tokens:
-  * **Ivory Parchment:** `#FAF3E8` (rich background canvas)
-  * **Deep Antique Rose:** `#B5526A` (primary accent tone)
-  * **Sage Green:** `#7A9478` (botanical elements)
-  * **Champagne Gold:** `#C4A26B` (metadata and interactive highlights)
-  * **Warm Cream:** `#F5EDD8` (paper surfaces)
-* **Textured Ambience:** Features an organic grain overlay layer (`css/grain.css`) and subtle vignette framing (`css/vignette.css`) for a nostalgic analog film reel mood.
-* **Premium Typography:** Curated pairings of *Cormorant Garamond* (elegant serif), *DM Serif Display* (dramatic labels), and *Jost* (minimalist modern geometric labels).
+<br/>
 
----
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-wise--pasteur.vercel.app-B5526A?style=for-the-badge&logoColor=white)](https://wise-pasteur.vercel.app)
+[![Deploy with Vercel](https://img.shields.io/badge/Deploy_on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/new/clone?repository-url=https://github.com/pranavpanchal1326/Bday-Template)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/pranavpanchal1326/Bday-Template)
+[![License](https://img.shields.io/badge/License-Open_Personal_Use-C4A26B?style=for-the-badge)](LICENSE)
 
-## ✨ Features & Cinematic Stages
+<br/>
 
-1. **Film Countdown (§01):** An authentic vintage 35mm projector countdown starting from 10 down to 1, with realistic ticking, crosshair rotation, and projector sound effects.
-2. **Title Reveal (§02):** A poetic typed text sequence introducing the dedication, framed by an elegant botanical gold-leaf sprig.
-3. **Rose Bouquet (§03):** A gorgeous, layered hand-drawn SVG rose bouquet tied with a satin ribbon and fallen petals.
-4. **Interactive Film Strip (§04):** A horizontal lazy-loaded filmstrip track that desaturates and highlights snapshots dynamically as they enter the spotlight frame.
-5. **Cinematic Video Reels (§05):** A dual-video layout with blurred background sidebars for vertical videos, responsive pagination dots, and a custom **animated film projector placeholder** if video files are not yet present.
-6. **Leica Camera & Polaroid Ejector (§06):** A beautifully detailed vector Leica M camera. Clicking the shutter releases a shutter sound, iris blink, and slides out **Polaroid cards** that gradually develop from white to high-contrast warm color before your eyes!
-7. **Lyric-Synced Spotify Cards (§07):** Staff-ruled cards presenting custom playlist songs with animated audio waveforms and cursive lyric annotations.
-8. **Wildflower Meadow (§08):** A tall arching botanical SVG landscape that separates stages with scattered petals.
-9. **wax-Sealed Envelope & Letter (§09):** A heavy parchment letter locked under a detailed wax seal. Clicking the seal strikes a wax crack sound, opens the envelope flap, slides out the paper, and draws an organic red thread under the cursive sign-off.
-10. **Scattered Tickets & Banknotes (§10):** A rain of custom-styled ticket banknotes stamped with serial numbers and custom watermarks.
-11. **Conclusion & Lit Candle (§12):** A high-fidelity cylindrical birthday candle with a realistic flame core glow, floating golden dust particles, and match smoke.
+> *"Because some people deserve more than a text message."*
+
+<br/>
 
 ---
 
-## 🛠️ Step-by-Step Customization Guide
+</div>
 
-Customizing this keepsake is incredibly straightforward and requires no complex build tools. Open the codebase in any editor (like VS Code) and follow these simple steps:
+## 📖 What is This?
 
-### 1. Update the Dedication & Letter Contents
-Open `index.html` and edit the following blocks:
-* **Page Title (Line 8):** Change `<title>For You | Birthday Keepsake</title>` to your recipient's name.
-* **Letter Salutation & Body (Lines 1468–1479):**
-  * Change `Dear [Name],` to your recipient's name.
-  * Change `[Your Name]` to your signature name.
-  * Customize the paragraph contents if you wish to write a custom personal note!
-* **Banknote Watermarks (Lines 1546–1591):** Customize the center span text (`MEMORIES` / `BDAY`) and serial numbers (`BDAY-26-05-YYYY`) to match a special date.
-* **Ending Header (Line 1729):** Change `Happy Birthday.` to `Happy Birthday, [Name].`
+**Birthday Keepsake** is an **ultra-premium, fully interactive digital experience** — a love letter to cinema, nostalgia, and the art of gifting. It is a static, zero-dependency-build website that tells a story in eleven cinematic chapters, each hand-crafted with meticulous attention to detail.
 
-### 2. Add Custom Photographs
-All photographs are located inside `assets/photos/`. We have bundled 3 high-quality generic vintage placeholders (`placeholder-portrait.png`, `placeholder-landscape.png`, `placeholder-square.png`).
-To insert your own photos:
-* Drop your image files into `assets/photos/`.
-* Inside `index.html`, locate the `<img>` tags in the **Film Strip** (§04) and **Polaroids** (§06) and change their `src` attributes to point to your files:
-  * For example, change `src="assets/photos/placeholder-portrait.png"` $\rightarrow$ `src="assets/photos/my-photo-01.jpg"`.
-  * *Tip: Portrait aspect ratio photos work best in the Polaroids and vertical frames.*
+This template is **completely generic and privacy-clean** — ready for you to fork, personalize, and deploy in minutes to someone who means the world to you.
 
-### 3. Add Custom Video Clips
-The template includes a plug-and-play video sequence inside Section 05:
-* Drop two `.mp4` video files into `assets/video/`.
-* Rename them exactly to `video-01.mp4` and `video-02.mp4`.
-* **That's it!** The JavaScript in `js/video.js` will automatically detect the presence of the video files, slide away the animated film projector placeholder card, and play your custom video loops sequentially with a blurred background.
+Built with **pure HTML, modular CSS, and Vanilla JavaScript**. No frameworks. No build step. No compromises.
 
-### 4. Custom Background Music & Sound Effects
-* **Soundtrack:** Drop your favorite audio track in `assets/sounds/` and name it `love-story.mp3` (or update the filename reference in `js/sound.js`).
-* **Sound Effects:** All sound effects (projector ticking, polaroid eject, shutter, paper rustle, wax crack) are lightweight audio assets referenced globally.
+<br/>
 
 ---
 
-## 🚀 Local Running & Vercel Deployment
+## ✨ Cinematic Chapters
 
-Since this project consists of raw HTML, CSS, and JS, you don't need to install any node modules or dependencies to run it locally.
+| § | Stage | Description |
+|---|-------|-------------|
+| 01 | **Film Countdown** | Authentic 35mm projector countdown with crosshair rotation, film grain, and projector tick sounds |
+| 02 | **Title Reveal** | Typed poetic dedication framed by a hand-drawn botanical gold sprig |
+| 03 | **Rose Bouquet** | Layered, hand-crafted SVG roses with a satin ribbon and scattered petals |
+| 04 | **Interactive Film Strip** | Lazy-loaded filmstrip with dynamic desaturation & spotlight highlight on scroll |
+| 05 | **Cinematic Video Reels** | Dual video player with blurred backdrop, pagination dots, & animated projector placeholder |
+| 06 | **Leica Camera & Polaroids** | Click the shutter → iris blinks → polaroids eject and *develop* before your eyes |
+| 07 | **Lyric Cards** | Staff-ruled song cards with animated audio waveforms and handwritten lyric annotations |
+| 08 | **Wildflower Meadow** | Arching botanical SVG landscape with floating petals |
+| 09 | **Wax-Sealed Letter** | Crackable wax seal → envelope opens → letter slides out → red thread hand-drawn |
+| 10 | **Memory Banknotes** | A rain of custom-stamped ticket banknotes with serial numbers & watermarks |
+| 12 | **Lit Birthday Candle** | Realistic candle flame with floating golden dust, glow, and match smoke |
 
-### Local Server
-Simply open `index.html` in your browser. Alternatively, to ensure sounds and lazy-loading operate correctly, run it via a local development server:
-* If using VS Code, install the **Live Server** extension and click "Go Live".
-* Or, using python in your terminal:
-  ```bash
-  python -m http.server 8000
-  ```
-  Then open `http://localhost:8000` in your web browser.
-
-### Instant Deploy (Vercel)
-You can deploy this keepsake directly to Vercel in 1 click:
-1. Push your customized code repository to GitHub.
-2. Go to Vercel, log in, and click **Add New Project**.
-3. Import your keepsake repository, leave the build settings at default (Static Site), and click **Deploy**.
+<br/>
 
 ---
 
-## 📄 License & Sharing
-This keepsake template is fully open for personal modification. Share the love, build beautiful memories, and make someone's day special!
+## 🎨 Design System
+
+The entire aesthetic is driven by a curated palette of **warm, antiqued HSL tokens** defined in `css/variables.css`.
+
+```css
+/* Core Palette */
+--color-ivory:    #FAF3E8;   /* Rich parchment background canvas  */
+--color-rose:     #B5526A;   /* Deep antique rose — primary accent */
+--color-sage:     #7A9478;   /* Sage green for botanical elements  */
+--color-gold:     #C4A26B;   /* Champagne gold for highlights      */
+--color-cream:    #F5EDD8;   /* Warm cream for paper surfaces      */
+```
+
+**Typography** uses three premium Google Font pairings:
+- `Cormorant Garamond` — Elegant serif for body & letter content
+- `DM Serif Display` — Dramatic display headers
+- `Jost` — Minimalist geometric sans-serif for labels & metadata
+
+**Atmosphere** is created through a CSS grain overlay (`css/grain.css`) and a vignette layer (`css/vignette.css`) — together giving the sensation of old 35mm film.
+
+<br/>
+
+---
+
+## 🛠️ Customization Guide
+
+> No build tools. No `npm install`. Just open in VS Code and edit.
+
+### Step 1 — Personal Details
+
+Open `index.html` and update:
+
+| What | Where (approx.) | How |
+|------|-----------------|-----|
+| Browser tab title | `<title>` tag | Change `For You \| Birthday Keepsake` |
+| Dedication header | Section `§02` | Replace typed text sequence |
+| Letter salutation | Section `§09`, `Dear [Name]` | Write your recipient's name |
+| Letter sign-off | Section `§09`, `[Your Name]` | Write your name |
+| Ending header | Section `§12` | Change `Happy Birthday.` |
+| Banknote date | Section `§10`, serial spans | Change `BDAY-26-05-YYYY` |
+
+---
+
+### Step 2 — Add Your Photos
+
+Drop your image files into **`assets/photos/`** and update the `src` attributes inside the film strip (§04) and polaroid (§06) sections of `index.html`.
+
+```
+assets/
+└── photos/
+    ├── placeholder-portrait.png   ← replace with portrait photos
+    ├── placeholder-landscape.png  ← replace with landscape photos
+    └── placeholder-square.png     ← replace with square / group shots
+```
+
+> 💡 *Portrait-oriented photos look best in Polaroids. Landscape photos shine in the film strip.*
+
+---
+
+### Step 3 — Add Your Videos *(Optional)*
+
+Drop two `.mp4` files into `assets/video/` and name them exactly:
+
+```
+assets/
+└── video/
+    ├── video-01.mp4
+    └── video-02.mp4
+```
+
+The JavaScript (`js/video.js`) **auto-detects** their presence. If videos are missing, an animated film projector placeholder card is shown instead — so the site always looks complete.
+
+---
+
+### Step 4 — Add Your Music
+
+```
+assets/
+└── sounds/
+    └── love-story.mp3   ← drop your custom soundtrack here
+```
+
+Update the filename reference in `js/sound.js` if you use a different name.
+
+<br/>
+
+---
+
+## 🚀 Running Locally
+
+No installation required. Open `index.html` directly, or run a local server for full audio/video support:
+
+**Using VS Code:**
+> Install the **Live Server** extension → click **Go Live** in the status bar.
+
+**Using Python:**
+```bash
+python -m http.server 8000
+# then open http://localhost:8000
+```
+
+<br/>
+
+---
+
+## ☁️ Deploy to Vercel (1 Click)
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/pranavpanchal1326/Bday-Template)
+
+Or manually:
+1. Fork this repository to your GitHub.
+2. Go to [vercel.com](https://vercel.com), log in, and click **Add New Project**.
+3. Import your forked repository — leave all build settings at default (Static Site).
+4. Click **Deploy**. Done. ✦
+
+> **Live Demo:** [https://wise-pasteur.vercel.app](https://wise-pasteur.vercel.app)
+
+<br/>
+
+---
+
+## 📁 Project Structure
+
+```
+wise-pasteur/
+│
+├── index.html              # Single-page experience (all 11 chapters)
+│
+├── css/
+│   ├── variables.css       # Design tokens — colors, fonts, spacing
+│   ├── base.css            # CSS reset and global defaults
+│   ├── grain.css           # Analog film grain overlay
+│   ├── vignette.css        # Cinematic vignette frame
+│   ├── section-01.css      # Film countdown styles
+│   ├── section-02.css      # Title reveal styles
+│   ├── section-03.css      # Rose bouquet styles
+│   ├── section-04.css      # Film strip & photo styles
+│   ├── section-05.css      # Video reel + projector placeholder
+│   ├── section-06.css      # Leica camera & polaroid styles
+│   ├── section-07.css      # Lyric card styles
+│   ├── section-08.css      # Wildflower meadow styles
+│   ├── section-09.css      # Wax-sealed letter styles
+│   ├── section-10.css      # Banknote & ticket styles
+│   └── section-12.css      # Candle & closing styles
+│
+├── js/
+│   ├── sound.js            # Howler.js audio engine & sound effects
+│   ├── video.js            # Video detection, playback & fallback logic
+│   ├── polaroid.js         # Shutter → develop animation controller
+│   ├── letter.js           # Wax seal interaction & letter reveal
+│   └── scroll.js           # GSAP scroll-triggered animation orchestrator
+│
+└── assets/
+    ├── photos/             # Drop your photos here
+    ├── video/              # Drop video-01.mp4 & video-02.mp4 here
+    └── sounds/             # Drop love-story.mp3 & SFX here
+```
+
+<br/>
+
+---
+
+## 🧰 Tech Stack
+
+| Technology | Role |
+|------------|------|
+| `HTML5` | Structure — semantic, accessible markup |
+| `Vanilla CSS` | Styling — modular, token-driven design system |
+| `Vanilla JS` | Logic — zero-framework interactivity |
+| `GSAP` | Scroll-triggered & timeline animations |
+| `Howler.js` | Cross-browser audio engine |
+| `Google Fonts` | Typography (Cormorant, DM Serif, Jost) |
+| `Vercel` | Hosting — instant global CDN deployment |
+
+<br/>
+
+---
+
+## 📄 License
+
+This template is open for **personal, non-commercial use**. Fork it, personalize it, and make someone feel extraordinary on their birthday. If you build something beautiful with it — share it. 🌹
+
+<br/>
+
+---
+
+<div align="center">
+
+Made with `</3` and a lot of late nights.
+
+**[⬆ Back to Top](#️-birthday-keepsake-template)**
+
+</div>
