@@ -1,0 +1,166 @@
+/* ============================================================
+   SECTION-06.CSS — The Camera
+   Background: var(--near-black) with a champagne-gold spotlight
+   Features: Leica SVG, Polaroid card, tagline
+   ============================================================ */
+
+/* ──────────────────────────────────────────
+   OUTER SHELL — spotlight radial gradient
+────────────────────────────────────────── */
+
+.s06-outer {
+  position:         absolute;
+  inset:            0;
+  /* Downward-casting spotlight from above centre */
+  background:       radial-gradient(
+    ellipse 400px 500px at 50% -10%,
+    rgba(196, 162, 107, 0.12) 0%,
+    transparent 70%
+  );
+  display:          flex;
+  align-items:      flex-start;
+  justify-content:  center;
+  padding-top:      8vh;
+  overflow:         hidden;
+}
+
+/* ──────────────────────────────────────────
+   SCENE — horizontal row: camera | polaroid
+────────────────────────────────────────── */
+
+.s06-scene {
+  display:          flex;
+  flex-direction:   row;
+  align-items:      flex-start;
+  justify-content:  center;
+  gap:              60px;
+  position:         relative;
+  width:            100%;
+  max-width:        900px;
+}
+
+/* ──────────────────────────────────────────
+   CAMERA WRAP — positions SVG + absolute polaroid
+────────────────────────────────────────── */
+
+.s06-camera-wrap {
+  position:   relative;
+  flex-shrink: 0;
+}
+
+/* ──────────────────────────────────────────
+   CAMERA SVG — the Leica M body
+────────────────────────────────────────── */
+
+.s06-camera-svg {
+  width:    380px;
+  height:   auto;
+  display:  block;
+}
+
+/* ──────────────────────────────────────────
+   POLAROID CARD — absolute, overlapping camera-right
+────────────────────────────────────────── */
+
+.polaroid-card {
+  position:     absolute;
+  top:          60px;
+  left:         420px;
+  width:        220px;
+  height:       260px;
+  background:   white;
+  border:       1px solid rgba(196, 162, 107, 0.2);
+  box-shadow:   0 12px 40px rgba(0, 0, 0, 0.45);
+  display:      flex;
+  flex-direction: column;
+  overflow:     hidden;
+  border-radius: 4px;
+  isolation:    isolate;
+  transform-origin: center center;
+  opacity:      0;
+  z-index:      10;
+}
+
+.polaroid-image-wrap {
+  width:      220px;
+  height:     180px;
+  background: #2A1E22;  /* fallback while image loads */
+  flex-shrink: 0;
+  position:   relative;
+  overflow:   hidden;
+}
+
+.polaroid-image-wrap img {
+  width:            100%;
+  height:           100%;
+  object-fit:       cover;
+  object-position:  center 35%;
+  border-radius:    0;
+  display:          block;
+}
+
+.polaroid-develop-overlay {
+  position:   absolute;
+  inset:      0;
+  background: #FFFFFF;
+  opacity:    1;
+  pointer-events: none;
+  z-index:    5;
+}
+
+.polaroid-warm-overlay {
+  position:   absolute;
+  inset:      0;
+  background: rgba(200, 160, 80, 0.35);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  opacity:    0;
+  z-index:    6;
+}
+
+.polaroid-bottom {
+  flex:             1;
+  display:          flex;
+  align-items:      center;
+  justify-content:  center;
+  padding:          8px;
+}
+
+.polaroid-caption-text {
+  font-family:  var(--font-display);
+  font-size:    12.5px;
+  font-style:   italic;
+  color:        var(--dusty-mauve);
+  text-align:   center;
+  line-height:  1.35;
+  padding:      0 8px;
+  opacity:      0;
+}
+
+/* ──────────────────────────────────────────
+   TAGLINE — centred text at bottom of section
+────────────────────────────────────────── */
+
+.s06-tagline {
+  position:     absolute;
+  bottom:       10%;
+  left:         0;
+  right:        0;
+  text-align:   center;
+  font-family:  var(--font-display);
+  font-size:    var(--size-24);
+  font-style:   italic;
+  color:        var(--deep-antique-rose);
+  pointer-events: none;
+  z-index:      10;
+  text-shadow:  0 2px 24px rgba(181, 82, 106, 0.2);
+}
+
+/* ──────────────────────────────────────────
+   PHASE 4 HOOK — lens aperture glow (opacity:0 now)
+────────────────────────────────────────── */
+
+#lens-aperture {
+  opacity: 0;
+  transition: opacity var(--dur-component) var(--ease-base);
+}

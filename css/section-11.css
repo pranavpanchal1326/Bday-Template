@@ -1,0 +1,50 @@
+/* ============================================================
+   SECTION-11.CSS — Bouquet / Bloom Moment
+   Background: var(--warm-cream)
+   Centred botanical bouquet SVG with fallen petal + tagline.
+   ============================================================ */
+
+/* ── Flex centred shell ─────────────────────────────────── */
+.s11-outer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Bouquet centred with relative positioning for petal ── */
+.s11-bouquet-wrap {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+/* ── The main bouquet SVG ───────────────────────────────── */
+.s11-bouquet-svg {
+  height: 50vh !important;
+  max-height: 500px !important;
+  width: auto;
+}
+
+/* ── Single fallen petal near base ─────────────────────── */
+#fallen-petal-single {
+  position: absolute;
+  bottom: -20px;
+  right: 60px;
+  width: 30px;
+  height: 40px;
+  transform: rotate(15deg);
+  filter: drop-shadow(0 2px 4px rgba(100, 60, 60, 0.1));
+}
+
+/* ── Italic tagline below bouquet ───────────────────────── */
+.s11-tagline {
+  font-family: var(--font-display);
+  font-size: var(--size-36);
+  font-style: italic;
+  color: var(--deep-antique-rose);
+  text-align: center;
+  margin-top: 48px;
+}

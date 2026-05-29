@@ -1,0 +1,150 @@
+/* ============================================================
+   SECTION-12.CSS — Closing / Birthday Candle
+   Background: var(--near-black)
+   Candle centred, birthday text above, glow, ribbon flourish.
+   ============================================================ */
+
+/* ── Full-section flex shell ────────────────────────────── */
+.s12-outer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Main birthday text ─────────────────────────────────── */
+#birthday-text {
+  position: absolute;
+  top: 25%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-size: var(--size-64);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--warm-cream);
+  text-align: center;
+  width: 100%;
+  z-index: 2;
+}
+
+/* ── Sub-wish text below birthday text ──────────────────── */
+#wish-text {
+  position: absolute;
+  top: calc(25% + 80px);
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-size: var(--size-28);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--dusty-mauve);
+  text-align: center;
+  width: 100%;
+  z-index: 2;
+}
+
+/* ── Candle SVG wrapper ─────────────────────────────────── */
+.s12-candle-wrap {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.s12-candle-svg {
+  display: block;
+}
+
+/* ── Soft radial glow beneath candle ────────────────────── */
+.s12-glow {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 12px;
+  background: radial-gradient(
+    ellipse,
+    rgba(220, 160, 60, 0.2),
+    transparent
+  );
+  pointer-events: none;
+}
+
+/* ── Decorative ribbon loop (decoration moved into SVG) ─── */
+.s12-ribbon-loop {
+  position: absolute;
+  bottom: calc(45% - 80px);
+  left: 50%;
+  transform: translateX(-40px);
+  z-index: 1;
+}
+
+/* ── Muted Gold Botanical Corner Silhouettes ─────────────── */
+.s12-corner-botanical {
+  position: absolute;
+  bottom: 0;
+  width: min(150px, 30vw);
+  height: min(220px, 45vw);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.8;
+  transition: opacity 1.5s var(--ease-base);
+}
+
+.s12-corner-botanical.left {
+  left: 0;
+}
+
+.s12-corner-botanical.right {
+  right: 0;
+}
+
+.s12-corner-botanical svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Floating Magic Sparkles / Embers ────────────────────── */
+.s12-particles-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.s12-sparkle {
+  position: absolute;
+  bottom: -20px;
+  width: var(--size, 4px);
+  height: var(--size, 4px);
+  background: var(--champagne-gold);
+  border-radius: 50%;
+  opacity: 0;
+  filter: blur(0.3px);
+  box-shadow: 
+    0 0 4px var(--champagne-gold),
+    0 0 10px rgba(196, 162, 107, 0.4);
+  animation: s12FloatUp var(--duration, 7s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  transform-origin: center center;
+}
+
+@keyframes s12FloatUp {
+  0% {
+    transform: translateY(0) translateX(0) scale(0.3);
+    opacity: 0;
+  }
+  15% {
+    opacity: var(--max-op, 0.5);
+  }
+  85% {
+    opacity: var(--max-op, 0.5);
+  }
+  100% {
+    transform: translateY(-105vh) translateX(var(--drift, 30px)) scale(1.4);
+    opacity: 0;
+  }
+}

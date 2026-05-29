@@ -1,0 +1,219 @@
+/* ============================================================
+   LAYOUT.CSS — Sahiba Birthday Keepsake
+   Scroll-snap container + all 12 section definitions.
+   ============================================================ */
+
+/* ──────────────────────────────────────────
+   OUTER SCROLL CONTAINER
+────────────────────────────────────────── */
+
+#site-scroll {
+  height:              100vh;
+  width:               100%;
+  overflow-y:          scroll;
+  overflow-x:          hidden;
+  scroll-snap-type:    y mandatory;
+  scrollbar-width:     none;        /* Firefox */
+  -ms-overflow-style:  none;        /* IE / Edge Legacy */
+}
+
+#site-scroll::-webkit-scrollbar {
+  display: none;                    /* Chrome / Safari / Opera */
+}
+
+/* ──────────────────────────────────────────
+   SECTION BASE — all direct children of #site-scroll
+────────────────────────────────────────── */
+
+#site-scroll > section {
+  scroll-snap-align:  start;
+  scroll-snap-stop:   always;
+  height:             100vh;
+  width:              100%;
+  position:           relative;
+  overflow:           hidden;
+  flex-shrink:        0;
+  display:            flex;
+  align-items:        center;
+  justify-content:    center;
+}
+
+/* ──────────────────────────────────────────
+   SECTION INNER WRAPPER
+   Constrains content to max-content width with section-pad
+────────────────────────────────────────── */
+
+.section-inner {
+  position:   relative;
+  z-index:    20;
+  width:      100%;
+  height:     100%;
+  max-width:  var(--max-content);
+  padding:    0 var(--section-pad);
+  display:    flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ──────────────────────────────────────────
+   PLACEHOLDER LABEL — Phase 1 orientation only
+────────────────────────────────────────── */
+
+.placeholder-label {
+  color:   var(--champagne-gold);
+  opacity: 0.2;
+  display: block;
+  text-align: center;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ──────────────────────────────────────────
+   SECTION BACKGROUNDS
+────────────────────────────────────────── */
+
+#section-01 { background: var(--pure-black);       }
+#section-02 { background: var(--ivory-parchment);  }
+#section-03 { background: var(--warm-cream);       }
+#section-04 { background: var(--near-black);       }
+#section-05 { background: var(--pure-black);       }
+#section-06 { background: var(--near-black);       }
+#section-07 { background: var(--ivory-parchment);  }
+#section-08 { background: var(--ivory-parchment);  }
+#section-09 { background: var(--warm-cream);       }
+#section-10 { background: var(--hot-ivory);        }
+#section-11 { background: var(--warm-cream);       }
+#section-12 { background: var(--near-black);       }
+
+/* ──────────────────────────────────────────
+   SECTION 07 — Spotify (300vh = 3 snap sub-sections)
+   The outer section is 300vh. An inner scroll container
+   handles 3 individual 100vh snapped song cards.
+────────────────────────────────────────── */
+
+#section-07 {
+  height: 300vh;
+}
+
+/* ──────────────────────────────────────────
+   SECTION 08 EXCEPTION — Botanical Divider
+   Height: 40vh instead of 100vh
+────────────────────────────────────────── */
+
+#section-08 {
+  height: 40vh;
+}
+
+/* ──────────────────────────────────────────
+   §01 — BLINKING DOT (top-right quadrant)
+────────────────────────────────────────── */
+
+.s01-blink-dot {
+  position:      absolute;
+  top:           calc(50% - 38%);   /* top-right quadrant */
+  left:          calc(50% + 30%);
+  width:         12px;
+  height:        12px;
+  border-radius: 50%;
+  background:    #ffffff;
+  animation:     s01Blink 400ms step-end infinite;
+  pointer-events: none;
+}
+
+@keyframes s01Blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+/* ──────────────────────────────────────────
+   §01 — CROSSHAIR ROTATION
+   1°/sec clockwise = 360° in 360s
+────────────────────────────────────────── */
+
+.s01-crosshair-group {
+  position:       absolute;
+  inset:          0;
+  animation:      s01CrosshairRotate 360s linear infinite;
+  transform-origin: center center;
+  pointer-events: none;
+}
+
+@keyframes s01CrosshairRotate {
+  from { transform: rotate(0deg);   }
+  to   { transform: rotate(360deg); }
+}
+
+/* ──────────────────────────────────────────
+   §01 — SPROCKET HOLES (top and bottom rows)
+────────────────────────────────────────── */
+
+.s01-sprockets {
+  position:       absolute;
+  left:           0;
+  right:          0;
+  display:        flex;
+  flex-direction: row;
+  gap:            18px;
+  padding:        8px 12px;
+  pointer-events: none;
+  z-index:        5;
+}
+.s01-sprockets.top { top: 0; }
+.s01-sprockets.bottom { bottom: 0; }
+
+.s01-sprocket-hole {
+  width:         14px;
+  height:        10px;
+  border-radius: 4px;
+  background:    transparent;
+  border:        1px solid rgba(196, 162, 107, 0.5);
+  flex-shrink:   0;
+}
+
+/* ──────────────────────────────────────────
+   §04 — PLAY BUTTON (pause → resume)
+────────────────────────────────────────── */
+
+#strip-play-btn {
+  position:     absolute;
+  bottom:       20px;
+  right:        24px;
+  font-family:  var(--font-micro);
+  font-size:    20px;
+  color:        var(--champagne-gold);
+  opacity:      0;
+  pointer-events: none;
+  z-index:      20;
+  cursor:       pointer;
+  transition:   opacity 300ms ease;
+  line-height:  1;
+  user-select:  none;
+}
+#strip-play-btn.visible {
+  opacity:      1;
+  pointer-events: auto;
+}
+
+/* ──────────────────────────────────────────
+   ACTIVE SECTION STATE
+   Applied by scroll.js via data-active attribute
+────────────────────────────────────────── */
+
+#site-scroll > section[data-active="true"] {
+  /* Phase 2+ will add content reveal states here */
+}
+
+/* ──────────────────────────────────────────
+   GLOBAL UTILITY
+────────────────────────────────────────── */
+
+/* Prevent any horizontal overflow globally */
+html, body {
+  overflow-x: hidden;
+  max-width:  100vw;
+}
+
+/* Release scroll-snapping when the handwritten letter is open so users can read it naturally */
+body.letter-open #site-scroll {
+  scroll-snap-type: none !important;
+}

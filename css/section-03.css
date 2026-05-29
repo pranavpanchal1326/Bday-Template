@@ -1,0 +1,42 @@
+/* ============================================================
+   SECTION 03 — BOUQUET
+   Background: var(--warm-cream)
+   All values reference variables.css tokens where possible
+   ============================================================ */
+
+/* ── Outer content column ── */
+.s03-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* ── Wrapper for the bouquet SVG ── */
+.s03-bouquet-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* ── The bouquet SVG itself ── */
+.s03-bouquet-svg {
+  width: auto;
+  height: 520px;
+  max-height: 60vh;
+  display: block;
+}
+
+/* ── Pull-quote beneath the bouquet ── */
+.s03-quote {
+  font-family: var(--font-display);
+  font-size: var(--size-28);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--dusty-mauve);
+  text-align: center;
+  max-width: 600px;
+  margin: 48px auto 0;
+  line-height: 1.5;
+}

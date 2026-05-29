@@ -1,0 +1,226 @@
+/* ============================================================
+   SECTION-01.CSS — Film Countdown Page
+   Background: var(--pure-black)
+   Features: Vintage 35mm film gate, concentric circle tick-marks,
+             blinking quadrant indicator, rotating crosshairs,
+             L-shaped registration marks, and glowing gold highlights.
+   ============================================================ */
+
+/* ──────────────────────────────────────────
+   CORNER REGISTRATION MARKS (L-shaped ticks)
+   ────────────────────────────────────────── */
+
+.s01-corner-mark {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.s01-corner-tl {
+  top: 40px;
+  left: 40px;
+  border-top: 1.5px solid rgba(196, 162, 107, 0.35);
+  border-left: 1.5px solid rgba(196, 162, 107, 0.35);
+}
+
+.s01-corner-tr {
+  top: 40px;
+  right: 40px;
+  border-top: 1.5px solid rgba(196, 162, 107, 0.35);
+  border-right: 1.5px solid rgba(196, 162, 107, 0.35);
+}
+
+.s01-corner-bl {
+  bottom: 40px;
+  left: 40px;
+  border-bottom: 1.5px solid rgba(196, 162, 107, 0.35);
+  border-left: 1.5px solid rgba(196, 162, 107, 0.35);
+}
+
+.s01-corner-br {
+  bottom: 40px;
+  right: 40px;
+  border-bottom: 1.5px solid rgba(196, 162, 107, 0.35);
+  border-right: 1.5px solid rgba(196, 162, 107, 0.35);
+}
+
+/* ──────────────────────────────────────────
+   META LABELS (SAHIBA / 1)
+   ────────────────────────────────────────── */
+
+.s01-meta-tl {
+  position: absolute;
+  top: 42px;
+  left: 80px;
+  font-family: var(--font-micro);
+  font-size: var(--size-12);
+  color: rgba(196, 162, 107, 0.5);
+  letter-spacing: 0.25em;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.s01-meta-tr {
+  position: absolute;
+  top: 42px;
+  right: 80px;
+  font-family: var(--font-micro);
+  font-size: var(--size-12);
+  color: rgba(196, 162, 107, 0.5);
+  letter-spacing: 0.2em;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* ──────────────────────────────────────────
+   FILM CIRCLE WRAP & LAYOUT
+   ────────────────────────────────────────── */
+
+.s01-countdown-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.s01-film-circle {
+  position: relative;
+  width: min(380px, 80vw);
+  height: min(380px, 80vw);
+  border-radius: 50%;
+  border: 1px solid rgba(196, 162, 107, 0.25);
+  box-shadow: 
+    0 0 40px rgba(0, 0, 0, 0.8),
+    inset 0 0 30px rgba(196, 162, 107, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(26, 16, 20, 0.2);
+}
+
+/* ──────────────────────────────────────────
+   TICK MARKS SVG
+   ────────────────────────────────────────── */
+
+.s01-tick-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ──────────────────────────────────────────
+   CROSSHAIRS
+   ────────────────────────────────────────── */
+
+.s01-crosshair-h {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(196, 162, 107, 0.35) 0%,
+    transparent 45%,
+    transparent 55%,
+    rgba(196, 162, 107, 0.35) 100%
+  );
+}
+
+.s01-crosshair-v {
+  position: absolute;
+  top: 5%;
+  bottom: 5%;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(196, 162, 107, 0.35) 0%,
+    transparent 45%,
+    transparent 55%,
+    rgba(196, 162, 107, 0.35) 100%
+  );
+}
+
+/* ──────────────────────────────────────────
+   SIDE TEXT LABELS (PICTURE START / FRAME)
+   ────────────────────────────────────────── */
+
+.s01-text-left {
+  position: absolute;
+  left: -90px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  font-family: var(--font-micro);
+  font-size: var(--size-11);
+  color: rgba(196, 162, 107, 0.45);
+  letter-spacing: 0.2em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.s01-text-right {
+  position: absolute;
+  right: -60px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  font-family: var(--font-micro);
+  font-size: var(--size-11);
+  color: rgba(196, 162, 107, 0.45);
+  letter-spacing: 0.2em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ──────────────────────────────────────────
+   INNER CONCENTRIC CIRCLE
+   ────────────────────────────────────────── */
+
+.s01-inner-circle {
+  width: 55%;
+  height: 55%;
+  border-radius: 50%;
+  border: 1px dashed rgba(196, 162, 107, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 3;
+}
+
+/* ──────────────────────────────────────────
+   COUNTDOWN HERO NUMBER
+   ────────────────────────────────────────── */
+
+.s01-number {
+  font-family: var(--font-display);
+  font-size: min(100px, 22vw);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--champagne-gold);
+  line-height: 1;
+  text-shadow: 0 0 20px rgba(196, 162, 107, 0.2);
+  display: block;
+  transform: translateY(-4px); /* typographic alignment optical correction */
+}
+
+/* ──────────────────────────────────────────
+   BOTTOM REEL TAPE LABEL
+   ────────────────────────────────────────── */
+
+.s01-film-label {
+  position: absolute;
+  bottom: 24px;
+  font-family: var(--font-micro);
+  font-size: var(--size-12);
+  color: rgba(196, 162, 107, 0.4);
+  letter-spacing: 0.35em;
+  pointer-events: none;
+  z-index: 3;
+}

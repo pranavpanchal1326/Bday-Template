@@ -1,0 +1,123 @@
+/* ============================================================
+   RESPONSIVE-TABLET.CSS — Sahiba Birthday Keepsake  [Phase 7]
+   Tablet adjustments: 768px – 1279px
+   All overrides use @media (min-width: 768px) and (max-width: 1279px)
+   ============================================================ */
+
+@media (min-width: 768px) and (max-width: 1279px) {
+
+  /* ══════════════════════════════════════════════════════════
+     §02 — TITLE REVEAL
+     "Sahiba." 96px → 72px. Lines 36px → 28px.
+  ══════════════════════════════════════════════════════════ */
+
+  .s02-name {
+    font-size: var(--size-72); /* 4.5rem = 72px */
+  }
+
+  .s02-line-1,
+  .s02-line-2 {
+    font-size: var(--size-28); /* 1.75rem = 28px */
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     §03 — BOUQUET
+     SVG height: 400px. Quote: 22px.
+  ══════════════════════════════════════════════════════════ */
+
+  .s03-bouquet-svg {
+    height: 400px;
+    width: auto;
+  }
+
+  .s03-quote {
+    font-size: 22px;
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     §04 — FILM STRIP
+     Frame height: 260px. Photo frames: 160px × 210px.
+  ══════════════════════════════════════════════════════════ */
+
+  .film-frame {
+    width:  160px;
+    height: 210px;
+  }
+
+  .film-frame.pressed-flower {
+    width:  160px;
+    height: 210px;
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     §06 — CAMERA
+     Camera SVG: 300px. Polaroid: 180px × 210px.
+  ══════════════════════════════════════════════════════════ */
+
+  .s06-camera-svg {
+    width: 300px;
+  }
+
+  .polaroid-card {
+    width:  180px !important;
+    height: 210px !important;
+    left:   330px !important; /* adjust to camera width change */
+  }
+
+  .polaroid-image-wrap {
+    width:  180px !important;
+    height: 148px !important;
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     §07 — SPOTIFY
+     Music frame: 580px wide (height auto).
+  ══════════════════════════════════════════════════════════ */
+
+  .s07-music-frame {
+    width: 580px;
+  }
+
+  .s07-lyrics-text {
+    font-size: 32px;
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     §09 — LETTER
+     Letter width: 480px.
+  ══════════════════════════════════════════════════════════ */
+
+  .s09-letter-sheet {
+    width: 480px;
+    padding: 40px 44px;
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     §10 — MONEY
+     Banknote: 220px × 110px. Headline: 56px.
+  ══════════════════════════════════════════════════════════ */
+
+  .s10-note {
+    width:  220px;
+    height: 110px;
+  }
+
+  .s10-headline-line {
+    font-size: var(--size-48); /* 3rem ≈ 56px approx */
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     §12 — ENDING
+     Birthday text: 48px. Wish text: 22px.
+  ══════════════════════════════════════════════════════════ */
+
+  #birthday-text {
+    font-size: var(--size-48); /* 3rem = 48px */
+  }
+
+  #wish-text {
+    font-size: 22px;
+    top: calc(25% + 62px);
+  }
+
+} /* end tablet */

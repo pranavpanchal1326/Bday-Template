@@ -1,0 +1,37 @@
+/* ============================================================
+   SOUND TOGGLE — Sahiba Birthday Keepsake
+   Fixed top-right button. Phase 1: styled only, non-functional.
+   Phase 5: Howler.js integration.
+   ============================================================ */
+
+#sound-toggle {
+  position:       fixed;
+  top:            24px;
+  right:          24px;
+  z-index:        99990;
+  background:     transparent;
+  border:         1px solid rgba(196, 162, 107, 0.4);
+  border-radius:  50%;
+  width:          40px;
+  height:         40px;
+  display:        flex;
+  align-items:    center;
+  justify-content: center;
+  color:          var(--ivory-parchment);
+  opacity:        0.6;
+  transition:     opacity 300ms var(--ease-base);
+  padding:        0;
+}
+
+#sound-toggle:hover {
+  opacity: 1;
+}
+
+#sound-toggle svg {
+  width:  16px;
+  height: 16px;
+  display: block;
+  stroke: currentColor;
+  fill:   none;
+  flex-shrink: 0;
+}

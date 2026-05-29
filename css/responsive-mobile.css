@@ -1,0 +1,425 @@
+/* ============================================================
+   RESPONSIVE-MOBILE.CSS — Sahiba Birthday Keepsake  [Phase 7]
+   Mobile layout: max-width 767px
+   ============================================================ */
+
+@media (max-width: 767px) {
+
+  /* ══════════════════════════════════════════════════════════
+     GLOBAL MOBILE
+  ══════════════════════════════════════════════════════════ */
+
+  /* iOS touch scrolling + momentum */
+  #site-scroll {
+    -webkit-overflow-scrolling: touch;
+    /* Proximity allows easier escape from a section on touch */
+    scroll-snap-type: y proximity;
+  }
+  /* All sections keep 100vh, scroll-snap intact */
+  #site-scroll > section {
+    scroll-snap-align: start;
+    scroll-snap-stop:  normal;   /* allow momentum to carry past */
+    height:            100vh;
+  }
+
+  /* §07: on mobile, collapse to auto height — nested snap disabled,
+     cards stack vertically as normal scroll */
+  #section-07 {
+    height: auto;
+    scroll-snap-align: start;
+  }
+  .s07-outer {
+    position: relative;
+    height:   auto;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+  .spotify-card-wrapper {
+    height: 100svh;
+    min-height: 500px;
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+  }
+
+  /* Hide play button on mobile */
+  #strip-play-btn {
+    display: none !important;
+  }
+
+  /* Horizontal padding on section-inner */
+  .section-inner {
+    padding: 0 6vw;
+  }
+
+  /* Sound toggle: reposition for mobile */
+  #sound-toggle {
+    top:   14px;
+    right: 14px;
+  }
+
+  /* Custom cursor: hidden on mobile (handled by cursor.js too) */
+  #cursor-dot,
+  #cursor-ring {
+    display: none !important;
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     §01 — FILM COUNTDOWN
+     Circle: 280px (from 480px)
+  ══════════════════════════════════════════════════════════ */
+
+  .s01-countdown-circle {
+    width:  280px;
+    height: 280px;
+  }
+
+  .s01-countdown-circle-svg {
+    width:  280px;
+    height: 280px;
+  }
+
+  #countdown-number {
+    font-size: 120px;
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     §02 — TITLE
+     "Sahiba.": 64px. Lines: 22px. Sprig: 200px wide.
+  ══════════════════════════════════════════════════════════ */
+
+  .s02-name {
+    font-size: var(--size-64); /* 4rem = 64px */
+  }
+
+  .s02-line-1,
+  .s02-line-2 {
+    font-size: 22px;
+    margin-bottom: 0.8rem;
+  }
+
+  .s02-sprig-wrap svg {
+    width: 200px;
+    height: auto;
+  }
+
+  .s02-content {
+    padding: 0 4vw;
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     §03 — BOUQUET
+     Bouquet height: 52vh. Quote: 18px. Centre.
+  ══════════════════════════════════════════════════════════ */
+
+  .s03-bouquet-svg {
+    height: 52vh;
+    width:  auto;
+  }
+
+  .s03-quote {
+    font-size: 18px;
+    padding:   0 6vw;
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     §04 — FILM STRIP → 3-UP PHOTO GRID
+     Strips off horizontal scroll, replaces with CSS Grid.
+  ══════════════════════════════════════════════════════════ */
+
+  /* Outer: fill section, scroll-y for the grid */
+  #section-04 {
+    overflow: hidden;
+  }
+
+  .s04-outer {
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Hide film-strip infrastructure on mobile */
+  #film-strip-track,
+  .s04-perforations,
+  .s04-frames-row,
+  #strip-spotlight {
+    display: none !important;
+  }
+
+  /* Hide ribbon bar on mobile */
+  #ribbon-strip {
+    display: none !important;
+  }
+
+  /* Hide pressed flower frames on mobile */
+  .pressed-flower-frame {
+    display: none !important;
+  }
+
+  /* Show the mobile photo grid instead */
+  .s04-mobile-grid {
+    display:               grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:                   8px;
+    padding:               24px 16px;
+    width:                 100%;
+    box-sizing:            border-box;
+  }
+
+  /* Each photo cell in grid */
+  .s04-mobile-grid .s04-grid-cell {
+    aspect-ratio:  3 / 4;
+    overflow:      hidden;
+    border:        1px solid rgba(196, 162, 107, 0.3);
+    position:      relative;
+    background:    #2A1E22;
+  }
+
+  /* Photo inside grid cell */
+  .s04-mobile-grid .s04-grid-cell img {
+    width:          100%;
+    height:         100%;
+    object-fit:     cover;
+    object-position: center 35%;
+    display:        block;
+    /* Film grain via pseudo-element handled in .film-frame-photo */
+    filter:         saturate(0.85) brightness(0.9);
+  }
+
+  /* Grain overlay on grid cells */
+  .s04-mobile-grid .s04-grid-cell::after {
+    content:          '';
+    position:         absolute;
+    inset:            0;
+    pointer-events:   none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity:          0.06;
+    mix-blend-mode:   overlay;
+    z-index:          2;
+  }
+
+  /* Quote at bottom of §04 */
+  .s04-quote {
+    position:  relative;
+    bottom:    auto;
+    font-size: 16px;
+    padding:   12px 6vw 20px;
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     §05 — VIDEO
+     Full portrait mode. Blurred bg retained.
+  ══════════════════════════════════════════════════════════ */
+
+  #video-container {
+    width:          100%;
+    padding-bottom: 177.78%; /* 9:16 portrait aspect */
+    height:         0;
+    position:       relative;
+  }
+
+  #video-container video {
+    position: absolute;
+    inset:    0;
+    width:    100%;
+    height:   100%;
+    object-fit: cover;
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     §06 — CAMERA
+     Camera: 240px. Polaroid: 160px × 200px. Stack vertically.
+  ══════════════════════════════════════════════════════════ */
+
+  .s06-outer {
+    padding-top: 4vh;
+  }
+
+  .s06-scene {
+    flex-direction: column;
+    align-items:    center;
+    gap:            24px;
+    max-width:      100%;
+  }
+
+  .s06-camera-svg {
+    width: 240px;
+  }
+
+  /* Polaroid repositioned below camera on mobile */
+  .polaroid-card {
+    position: relative !important;
+    top:      auto !important;
+    left:     auto !important;
+    width:    220px !important;
+    height:   260px !important;
+    transform: rotate(2deg) !important;
+    margin:   20px auto !important;
+    opacity:  1 !important;
+  }
+
+  .polaroid-image-wrap {
+    width:  220px !important;
+    height: 180px !important;
+  }
+
+  #camera-section-quote {
+    font-size: 18px;
+  }
+
+  /* Tap-to-reveal label for letter section (mobile) */
+  .s06-tap-hint {
+    display:     block;
+    font-family: var(--font-micro);
+    font-size:   11px;
+    color:       rgba(196, 162, 107, 0.4);
+    text-align:  center;
+    margin-top:  8px;
+    letter-spacing: 0.12em;
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     §07 — SPOTIFY
+     Music frame: full-width. Spotify card: max 340px.
+     Lyrics: 26px.
+  ══════════════════════════════════════════════════════════ */
+
+  .s07-music-frame {
+    width:   100%;
+    max-width: 95vw;
+    padding: 20px 16px;
+  }
+
+  .s07-spotify-card {
+    max-width: 340px;
+    width:     100%;
+  }
+
+  .s07-lyrics-text {
+    font-size: 26px;
+    padding:   0 12px;
+    line-height: 1.4;
+  }
+
+  .s07-lyrics-panel {
+    padding:   20px 0;
+    max-width: 95vw;
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     §08 — BOTANICAL
+     Height: 30vh. Scales to mobile width.
+  ══════════════════════════════════════════════════════════ */
+
+  #section-08 {
+    height: 30vh;
+  }
+
+  .s08-meadow-wrap svg {
+    width:  100%;
+    height: auto;
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     §09 — LETTER
+     Envelope: 320px × 220px (within outer).
+     Letter: 88vw wide, padding 20px.
+     Text: 16px.
+  ══════════════════════════════════════════════════════════ */
+
+  .s09-letter-sheet {
+    width:   88vw;
+    padding: 20px;
+  }
+
+  .s09-paragraph,
+  .s09-closing,
+  .s09-signoff {
+    font-size:   16px;
+    line-height: 1.8;
+  }
+
+  .s09-salutation {
+    font-size:     18px;
+    margin-bottom: 1.2rem;
+  }
+
+  /* Compress pressed rose on small screens */
+  .s09-pressed-rose {
+    width:  60px;
+    height: 60px;
+    top:    16px;
+    left:   16px;
+  }
+
+  /* Tap-to-reveal label (mobile §09) */
+  .s09-tap-hint {
+    display:     block;
+    font-family: var(--font-micro);
+    font-size:   11px;
+    color:       rgba(196, 162, 107, 0.4);
+    text-align:  center;
+    margin-bottom: 8px;
+    letter-spacing: 0.12em;
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     §10 — MONEY
+     Notes: 180px × 90px. 2×5 grid. Reduced 3D rotation.
+  ══════════════════════════════════════════════════════════ */
+
+  .s10-note {
+    width:  180px;
+    height: 90px;
+  }
+
+  .s10-headline-line {
+    font-size: 42px;
+  }
+
+  .s10-medallion {
+    width:  36px;
+    height: 36px;
+  }
+
+  .s10-note-center {
+    font-size: 22px;
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     §11 — PETAL FALLS
+     Scales naturally. Just reduce padding.
+  ══════════════════════════════════════════════════════════ */
+
+  .s11-bouquet-wrap {
+    padding: 0 4vw;
+  }
+
+  .s11-tagline {
+    font-size: 18px;
+    padding:   0 6vw;
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     §12 — ENDING
+     Birthday text: 36px. Wish: 18px.
+  ══════════════════════════════════════════════════════════ */
+
+  #birthday-text {
+    font-size: 36px;
+    top: 22%;
+  }
+
+  #wish-text {
+    font-size: 18px;
+    top: calc(22% + 55px);
+  }
+
+  /* Candle scales via viewBox — just constrain width */
+  .s12-candle-svg {
+    width:  90px;
+    height: auto;
+  }
+
+} /* end mobile */

@@ -1,0 +1,296 @@
+/* ============================================================
+   SECTION-05.CSS — Video Section  [Phase 3 update]
+   Background: var(--pure-black)
+   Replaced placeholder with real video player structure.
+   Added: .site-video, .video-bg-blur, .film-burn overlays,
+          portrait video handling.
+   ============================================================ */
+
+/* ──────────────────────────────────────────
+   OUTER SHELL
+────────────────────────────────────────── */
+
+.s05-outer {
+  position:         absolute;
+  inset:            0;
+  display:          flex;
+  align-items:      center;
+  justify-content:  center;
+}
+
+/* ──────────────────────────────────────────
+   VIDEO CONTAINER — holds both video players
+   and film burn overlays
+────────────────────────────────────────── */
+
+#video-container {
+  width:            360px;
+  height:           640px;
+  max-width:        85vw;
+  max-height:       70vh;
+  background:       var(--pure-black);
+  border:           1px solid rgba(196, 162, 107, 0.35);
+  position:         relative;
+  display:          flex;
+  align-items:      center;
+  justify-content:  center;
+  overflow:         hidden;
+  border-radius:    16px;
+
+  /* Subtle inner glow — screen-off ambience */
+  box-shadow:
+    inset 0 0 100px rgba(0, 0, 0, 0.95),
+    0 10px 50px rgba(0, 0, 0, 0.7);
+}
+
+/* Corner accent marks */
+#video-container::before,
+#video-container::after {
+  content:    '';
+  position:   absolute;
+  width:      24px;
+  height:     24px;
+  border-color: rgba(196, 162, 107, 0.4);
+  border-style: solid;
+  z-index:    10;
+  pointer-events: none;
+}
+
+#video-container::before {
+  top:    -1px;
+  left:   -1px;
+  border-width: 1px 0 0 1px;
+}
+
+#video-container::after {
+  bottom: -1px;
+  right:  -1px;
+  border-width: 0 1px 1px 0;
+}
+
+/* ──────────────────────────────────────────
+   VIDEO PLAYER ELEMENTS
+   Both videos stack in the same container.
+   JS manages which is visible.
+────────────────────────────────────────── */
+
+.site-video {
+  width:            100%;
+  height:           100%;
+  object-fit:       cover;
+  object-position:  center;
+  display:          block;
+  background:       var(--pure-black);
+  position:         absolute;
+  inset:            0;
+  z-index:          2;
+  opacity:          0;
+  transition:       opacity 200ms ease;
+}
+
+/* Active / visible video */
+.site-video.video-active {
+  opacity: 1;
+}
+
+/* ──────────────────────────────────────────
+   PORTRAIT VIDEO BLURRED BACKGROUND
+   Shows blurred/zoomed version of the video
+   to fill left/right bars on portrait clips.
+────────────────────────────────────────── */
+
+.video-bg-blur {
+  position:   absolute;
+  inset:      0;
+  width:      100%;
+  height:     100%;
+  object-fit: cover;
+  filter:     blur(32px) brightness(0.4);
+  scale:      1.1;    /* prevent blur edge artefacts */
+  z-index:    1;
+  opacity:    0;
+  transition: opacity 200ms ease;
+}
+
+.video-bg-blur.video-bg-active {
+  opacity: 1;
+}
+
+/* ──────────────────────────────────────────
+   FILM BURN TRANSITION OVERLAYS
+   Phase 4 will animate these.
+   Phase 3: built, opacity:0.
+────────────────────────────────────────── */
+
+.film-burn {
+  position:       absolute;
+  inset:          0;
+  z-index:        100;
+  pointer-events: none;
+  opacity:        0;
+}
+
+#film-burn-entry {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 200, 80, 0)   0%,
+    rgba(255, 200, 80, 0.9) 40%,
+    rgba(255, 255, 255, 1)  60%,
+    rgba(255, 200, 80, 0.9) 80%,
+    rgba(255, 200, 80, 0)   100%
+  );
+  transform: translateX(-100%);  /* entry: sweeps left → right */
+}
+
+#film-burn-exit {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 200, 80, 0)   0%,
+    rgba(255, 200, 80, 0.9) 40%,
+    rgba(255, 255, 255, 1)  60%,
+    rgba(255, 200, 80, 0.9) 80%,
+    rgba(255, 200, 80, 0)   100%
+  );
+  transform: translateX(100%);   /* exit: sweeps right → left */
+}
+
+/* ──────────────────────────────────────────
+   LEGACY PLACEHOLDER (kept for safety — hidden)
+────────────────────────────────────────── */
+
+.video-placeholder-symbol {
+  display: none;
+}
+
+/* ──────────────────────────────────────────
+   PREMIUM NAVIGATION DOTS & HINTS
+────────────────────────────────────────── */
+
+.video-pagination {
+  position:       absolute;
+  bottom:         22px;
+  left:           50%;
+  transform:      translateX(-50%);
+  display:        flex;
+  gap:            10px;
+  z-index:        15;
+  pointer-events: none;
+}
+
+.video-dot {
+  width:          7px;
+  height:         7px;
+  border-radius:  50%;
+  background:     rgba(255, 255, 255, 0.4);
+  transition:     all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.video-dot.active {
+  background:     var(--champagne-gold, #C4A26B);
+  transform:      scale(1.4);
+  box-shadow:     0 0 10px var(--champagne-gold), 0 0 20px rgba(196, 162, 107, 0.5);
+}
+
+.video-tap-hint {
+  position:       absolute;
+  top:            24px;
+  right:          24px;
+  display:        flex;
+  align-items:    center;
+  gap:            6px;
+  background:     rgba(13, 10, 11, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border:         1px solid rgba(196, 162, 107, 0.22);
+  padding:        6px 12px;
+  border-radius:  20px;
+  font-family:    var(--font-micro, sans-serif);
+  font-size:      10.5px;
+  color:          var(--warm-cream, #EDE0C4);
+  letter-spacing: 0.05em;
+  opacity:        0;
+  transform:      translateY(-5px);
+  z-index:        15;
+  transition:     opacity 0.4s var(--ease-base), transform 0.4s var(--ease-base);
+  pointer-events: none;
+  box-shadow:     0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Animate hint on page entry / active container */
+.section-05-active .video-tap-hint {
+  opacity:        0.75;
+  transform:      translateY(0);
+  animation:      hintPulse 2.4s infinite ease-in-out;
+  animation-delay: 1s;
+}
+
+#video-container:hover .video-tap-hint {
+  opacity:        1;
+  background:     rgba(13, 10, 11, 0.85);
+  border-color:   rgba(196, 162, 107, 0.45);
+  box-shadow:     0 6px 24px rgba(196, 162, 107, 0.15);
+}
+
+@keyframes hintPulse {
+  0%, 100% { transform: translateY(0); opacity: 0.75; }
+  50% { transform: translateY(-3px); opacity: 0.95; }
+}
+
+/* ──────────────────────────────────────────
+   VIDEO PLACEHOLDER CARD — elegant template fallback
+────────────────────────────────────────── */
+
+.video-placeholder-card {
+  position:       absolute;
+  inset:          0;
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  justify-content: center;
+  background:     radial-gradient(circle at center, #1C1115 0%, #0A0608 100%);
+  z-index:        3; /* above videos (z-index 2) */
+  padding:        32px;
+  text-align:     center;
+  color:          var(--warm-cream);
+  transition:     opacity 0.6s var(--ease-slow);
+  pointer-events: none; /* let click pass through to play */
+}
+
+/* Hide when active video starts playing */
+.video-playing .video-placeholder-card {
+  opacity:        0;
+  pointer-events: none;
+}
+
+.video-placeholder-icon {
+  margin-bottom: 24px;
+  animation:      projectorPulse 3s infinite ease-in-out;
+}
+
+.video-placeholder-title {
+  font-family:    var(--font-display);
+  font-size:      20px;
+  color:          var(--champagne-gold);
+  margin-bottom:  12px;
+  letter-spacing: 0.05em;
+}
+
+.video-placeholder-desc {
+  font-family:    var(--font-micro);
+  font-size:      11px;
+  color:          rgba(237, 224, 196, 0.65);
+  line-height:    1.6;
+  max-width:      240px;
+  letter-spacing: 0.02em;
+}
+
+@keyframes projectorPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 5px rgba(196, 162, 107, 0.2));
+  }
+  50% {
+    transform: scale(1.03);
+    filter: drop-shadow(0 0 15px rgba(196, 162, 107, 0.45));
+  }
+}

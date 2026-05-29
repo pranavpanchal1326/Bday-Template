@@ -1,0 +1,100 @@
+/* ============================================================
+   TYPOGRAPHY.CSS — Sahiba Birthday Keepsake
+   All typographic classes. Zero hardcoded values.
+   ============================================================ */
+
+/* ──────────────────────────────────────────
+   BASE BODY TYPE
+────────────────────────────────────────── */
+
+body {
+  font-family: var(--font-display);
+  font-size: var(--size-18);
+  font-weight: 400;
+  color: var(--ivory-parchment);
+}
+
+/* ──────────────────────────────────────────
+   TYPOGRAPHIC SCALE CLASSES
+────────────────────────────────────────── */
+
+/* Hero — largest display, thin italic */
+.type-hero {
+  font-family:  var(--font-display);
+  font-size:    var(--size-96);
+  font-weight:  300;
+  font-style:   italic;
+  line-height:  0.92;
+  letter-spacing: -0.02em;
+}
+
+/* Display — large section opener */
+.type-display {
+  font-family:  var(--font-display);
+  font-size:    var(--size-72);
+  font-weight:  300;
+  font-style:   italic;
+  line-height:  0.95;
+  letter-spacing: -0.015em;
+}
+
+/* Section — bold upright heading */
+.type-section {
+  font-family:  var(--font-display);
+  font-size:    var(--size-48);
+  font-weight:  600;
+  font-style:   normal;
+  line-height:  1.05;
+  letter-spacing: -0.01em;
+}
+
+/* Body — readable italic prose */
+.type-body {
+  font-family:  var(--font-display);
+  font-size:    var(--size-24);
+  font-weight:  400;
+  font-style:   italic;
+  line-height:  1.55;
+  letter-spacing: 0.005em;
+}
+
+/* Quote — expressive pull-quote */
+.type-quote {
+  font-family:  var(--font-display);
+  font-size:    var(--size-42);
+  font-weight:  400;
+  font-style:   italic;
+  line-height:  1.2;
+  letter-spacing: -0.01em;
+}
+
+/* Label — DM Serif Display for sub-headings */
+.type-label {
+  font-family:  var(--font-label);
+  font-size:    var(--size-18);
+  font-weight:  400;
+  font-style:   normal;
+  line-height:  1.3;
+  letter-spacing: 0.02em;
+}
+
+/* Caption — Jost micro uppercase */
+.type-caption {
+  font-family:    var(--font-micro);
+  font-size:      var(--size-11);
+  font-weight:    300;
+  font-style:     normal;
+  line-height:    1.6;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Micro — Jost smallest utility text */
+.type-micro {
+  font-family:  var(--font-micro);
+  font-size:    var(--size-11);
+  font-weight:  300;
+  font-style:   normal;
+  line-height:  1.5;
+  letter-spacing: 0.06em;
+}

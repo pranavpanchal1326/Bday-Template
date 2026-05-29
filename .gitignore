@@ -1,0 +1,14 @@
+# System Files
+.DS_Store
+Thumbs.db
+*.log
+
+# Deployment & Vercel
+.vercel/
+.env
+.env*.local
+
+# Node/Build dependencies (if added later)
+node_modules/
+dist/
+build/

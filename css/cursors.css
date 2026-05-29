@@ -1,0 +1,139 @@
+/* ============================================================
+   CURSORS.CSS — Sahiba Birthday Keepsake
+   Custom dual-element cursor: dot + ring.
+   ============================================================ */
+
+/* ──────────────────────────────────────────
+   HIDE ALL DEFAULT CURSORS
+────────────────────────────────────────── */
+
+* {
+  cursor: none !important;
+}
+
+/* ──────────────────────────────────────────
+   CURSOR DOT — precise, instantaneous follower
+────────────────────────────────────────── */
+
+#cursor-dot {
+  position:       fixed;
+  top:            0;
+  left:           0;
+  width:          8px;
+  height:         8px;
+  border-radius:  50%;
+  background:     var(--deep-antique-rose);
+  pointer-events: none;
+  z-index:        99999;
+  transform:      translate(-50%, -50%);
+  transform-origin: center;
+  transition:
+    transform       150ms var(--ease-base),
+    background-color 300ms var(--ease-base),
+    width           200ms var(--ease-base),
+    height          200ms var(--ease-base);
+  will-change:    transform;
+
+  /* Centre any SVG icon child */
+  display:        flex;
+  align-items:    center;
+  justify-content: center;
+}
+
+/* When cursor-dot holds an SVG icon, hide the dot background */
+#cursor-dot.has-icon {
+  background: transparent;
+  width:  12px;
+  height: 12px;
+}
+
+#cursor-dot svg {
+  width:  12px;
+  height: 12px;
+  fill:   var(--deep-antique-rose);
+  display: block;
+  flex-shrink: 0;
+}
+
+/* ──────────────────────────────────────────
+   CURSOR RING — lagged follower
+────────────────────────────────────────── */
+
+#cursor-ring {
+  position:       fixed;
+  top:            0;
+  left:           0;
+  width:          32px;
+  height:         32px;
+  border-radius:  50%;
+  border:         1.5px solid var(--deep-antique-rose);
+  background:     transparent;
+  pointer-events: none;
+  z-index:        99998;
+  opacity:        0.5;
+  transform:      translate(-50%, -50%);
+  transform-origin: center;
+  transition:
+    width           300ms var(--ease-base),
+    height          300ms var(--ease-base),
+    opacity         300ms var(--ease-base),
+    border-color    300ms var(--ease-base);
+  will-change:    transform;
+}
+
+/* ──────────────────────────────────────────
+   INTERACTIVE HOVER STATE
+   Applied when hovering button, .interactive
+────────────────────────────────────────── */
+
+#cursor-ring.is-hovering {
+  width:   64px;
+  height:  64px;
+  opacity: 0.8;
+}
+
+/* ──────────────────────────────────────────
+   CLICK STATE — dot shrinks momentarily
+────────────────────────────────────────── */
+
+#cursor-dot.is-clicking {
+  transform: translate(-50%, -50%) scale(0.6);
+}
+
+/* ──────────────────────────────────────────
+   CURSOR TYPE COLOUR VARIANTS
+   Section-specific via cursor type
+────────────────────────────────────────── */
+
+/* Default — rose dot */
+#cursor-dot[data-cursor-type="default"] {
+  background: var(--deep-antique-rose);
+}
+
+/* Film — amber tint ring */
+#cursor-dot[data-cursor-type="film"] {
+  background: var(--champagne-gold);
+}
+#cursor-ring[data-cursor-type="film"] {
+  border-color: var(--champagne-gold);
+}
+
+/* Camera — sage ring accent */
+#cursor-ring[data-cursor-type="camera"] {
+  border-color: var(--sage-green);
+}
+
+/* Quill — dusty mauve */
+#cursor-ring[data-cursor-type="quill"] {
+  border-color: var(--dusty-mauve);
+}
+
+/* Vinyl — pressed petal */
+#cursor-ring[data-cursor-type="vinyl"] {
+  border-color: var(--pressed-petal);
+}
+
+/* Rose — deep antique rose (same as default) */
+#cursor-ring[data-cursor-type="rose"] {
+  border-color: var(--deep-antique-rose);
+}

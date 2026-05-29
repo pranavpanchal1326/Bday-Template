@@ -1,0 +1,25 @@
+/* ============================================================
+   SECTION-08.CSS — Botanical Divider
+   Background: var(--ivory-parchment) | Height: 40vh
+   ============================================================ */
+
+.s08-outer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.s08-meadow-wrap {
+  width: 100%;
+  height: 280px;
+  position: relative;
+}
+
+.s08-ribbon-path {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}

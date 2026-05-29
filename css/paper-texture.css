@@ -1,0 +1,68 @@
+/* ============================================================
+   PAPER-TEXTURE.CSS — Sahiba Birthday Keepsake
+   Faint watercolour wash texture on warm-cream / ivory sections.
+   Implemented as an SVG feTurbulence + feDisplacementMap filter
+   applied via CSS filter property. Barely visible — felt not seen.
+   ============================================================ */
+
+/* ── Inject the SVG filter definition as a hidden DOM element ──
+   The filter is referenced by CSS below via url(#paper-texture).
+   We create it as an SVG filter embedded in the body via a script
+   in the <head>, but since this is CSS-only, we use a data-URI
+   background-image approach instead.
+────────────────────────────────────────── */
+
+/*
+  Apply to warm-cream / parchment section backgrounds.
+  The CSS filter approach: overlay a very subtle noise texture
+  as a pseudo-element using inline SVG base64.
+*/
+
+#section-03 .section-inner::before,
+#section-07 .section-inner::before,
+#section-08 .section-inner::before,
+#section-09 .section-inner::before,
+#section-11 .section-inner::before {
+  content:          '';
+  position:         absolute;
+  inset:            0;
+  pointer-events:   none;
+  z-index:          0;
+  opacity:          0.028;
+
+  /* feTurbulence watercolour wash — low frequency, warm tones */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.018 0.022' numOctaves='4' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0.8 0.2 0 0 0.12 0.3 0.5 0 0 0.05 0.1 0.1 0.3 0 0 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23paper)' opacity='1'/%3E%3C/svg%3E");
+  background-size:  400px 400px;
+  background-repeat: repeat;
+}
+
+/* ── Slightly more prominent on §09 (most prominent paper texture) ── */
+#section-09 .section-inner::before {
+  opacity: 0.042;
+}
+
+/* ── The letter sheet itself gets paper texture too ── */
+.s09-letter-sheet::before {
+  content:        '';
+  position:       absolute;
+  inset:          0;
+  pointer-events: none;
+  z-index:        0;
+  opacity:        0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='paper2'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.025 0.028' numOctaves='3' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0.6 0.2 0 0 0.15 0.2 0.4 0 0 0.08 0.1 0.1 0.2 0 0 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23paper2)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 300px 300px;
+  background-repeat: repeat;
+}
+
+/* ── Music sheet frame gets light parchment texture too ── */
+.s07-music-frame::before {
+  content:        '';
+  position:       absolute;
+  inset:          0;
+  pointer-events: none;
+  z-index:        0;
+  opacity:        0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='paper3'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='3' seed='12' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0.4'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23paper3)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 250px 250px;
+  background-repeat: repeat;
+}

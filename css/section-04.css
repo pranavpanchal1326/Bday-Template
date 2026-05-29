@@ -1,0 +1,276 @@
+/* ============================================================
+   SECTION-04.CSS — Film Strip / Memory Reel  [Phase 3 update]
+   Added: .film-photo, grain overlay, saturation treatment,
+          warm amber tint on inactive frames, active frame class.
+   ============================================================ */
+
+/* ──────────────────────────────────────────
+   OUTER SHELL — fills the section absolutely
+────────────────────────────────────────── */
+
+.s04-outer {
+  position:         absolute;
+  inset:            0;
+  display:          flex;
+  align-items:      center;
+  justify-content:  center;
+  flex-direction:   column;
+  overflow:         hidden;
+}
+
+/* ──────────────────────────────────────────
+   RIBBON BAR — decorative horizontal band
+────────────────────────────────────────── */
+
+.s04-ribbon-bar {
+  width:            100%;
+  height:           16px;
+  background:       var(--deep-antique-rose);
+  position:         relative;
+  flex-shrink:      0;
+  margin-bottom:    -2px;
+  z-index:          5;
+}
+
+/* ──────────────────────────────────────────
+   RIBBON BOW
+────────────────────────────────────────── */
+
+.s04-ribbon-bow {
+  position:   absolute;
+  left:       40px;
+  top:        -8px;
+  width:      48px;
+  height:     32px;
+  display:    flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ──────────────────────────────────────────
+   FILM STRIP TRACK
+────────────────────────────────────────── */
+
+#film-strip-track {
+  width:          100%;
+  height:         360px;
+  overflow:       hidden;
+  display:        flex;
+  flex-direction: column;
+  position:       relative;
+  flex-shrink:    0;
+}
+
+/* ──────────────────────────────────────────
+   STRIP ROW
+────────────────────────────────────────── */
+
+.s04-strip {
+  display:          flex;
+  flex-direction:   column;
+  align-items:      stretch;
+  height:           360px;
+  padding:          0;
+  background-image: linear-gradient(
+    180deg,
+    rgba(180, 120, 40, 0.08) 0%,
+    transparent              30%,
+    transparent              70%,
+    rgba(180, 120, 40, 0.08) 100%
+  );
+  background-color: var(--near-black);
+}
+
+/* ──────────────────────────────────────────
+   PERFORATIONS
+────────────────────────────────────────── */
+
+.s04-perforations {
+  height:           40px;
+  width:            100%;
+  display:          flex;
+  flex-direction:   row;
+  align-items:      center;
+  padding:          0 16px;
+  gap:              28px;
+  flex-shrink:      0;
+  background-color: var(--near-black);
+}
+
+.s04-hole {
+  width:        18px;
+  height:       24px;
+  border-radius: 3px;
+  border:       1px solid rgba(196, 162, 107, 0.25);
+  background:   #050505;
+  box-shadow:   inset 0 3px 6px rgba(0, 0, 0, 0.95);
+  flex-shrink:  0;
+}
+
+/* ──────────────────────────────────────────
+   FRAMES ROW
+────────────────────────────────────────── */
+
+.s04-frames-row {
+  display:          flex;
+  flex-direction:   row;
+  gap:              16px;
+  padding:          0 16px;
+  height:           280px;
+  overflow-x:       auto;
+  overflow-y:       hidden;
+  scrollbar-width:  none;
+  flex:             1;
+  align-items:      stretch;
+}
+
+.s04-frames-row::-webkit-scrollbar {
+  display: none;
+}
+
+/* ──────────────────────────────────────────
+   INDIVIDUAL FILM FRAME
+────────────────────────────────────────── */
+
+.film-frame {
+  width:        200px;
+  height:       260px;
+  flex-shrink:  0;
+  border:       1px solid rgba(196, 162, 107, 0.3);
+  display:      flex;
+  flex-direction: column;
+  overflow:     hidden;
+  position:     relative;
+}
+
+/* ── INACTIVE frame: warm amber tint overlay via ::before ── */
+.film-frame:not(.pressed-flower)::before {
+  content:          '';
+  position:         absolute;
+  inset:            0;
+  background:       rgba(180, 120, 40, 0.12);
+  pointer-events:   none;
+  mix-blend-mode:   multiply;
+  z-index:          3;
+  transition:       opacity 600ms ease;
+}
+
+/* Active frame — no amber tint */
+.film-frame--active::before {
+  opacity: 0;
+}
+
+/* ── Photo area — sized to fill frame ─────────────────────── */
+.film-frame-photo {
+  flex:             1;
+  background:       #2A1E22;
+  display:          flex;
+  align-items:      center;
+  justify-content:  center;
+  overflow:         hidden;
+  position:         relative;
+}
+
+/* ── Photo grain overlay via ::after ─────────────────────── */
+.film-frame-photo::after {
+  content:          '';
+  position:         absolute;
+  inset:            0;
+  pointer-events:   none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity:          0.06;
+  mix-blend-mode:   overlay;
+  z-index:          2;
+}
+
+/* ── Actual photo <img> inside .film-frame-photo ─────────── */
+.film-photo {
+  width:            100%;
+  height:           100%;
+  object-fit:       cover;
+  object-position:  center 35%;   /* portrait: keep faces near center-top */
+  display:          block;
+  /* Base desaturated / dark treatment for all non-active frames */
+  filter:           saturate(0.6) brightness(0.85);
+  transition:       filter 600ms ease;
+  position:         relative;
+  z-index:          1;
+}
+
+/* Active frame: full colour, full brightness */
+.film-frame--active .film-photo {
+  filter:           saturate(1) brightness(1);
+}
+
+/* Caption ticker below each frame */
+.film-frame-caption {
+  height:       24px;
+  background:   var(--near-black);
+  display:      flex;
+  align-items:  center;
+  justify-content: center;
+  font-family:  var(--font-micro);
+  font-size:    11px;
+  color:        rgba(196, 162, 107, 0.6);
+  letter-spacing: 0.1em;
+  flex-shrink:  0;
+  position:     relative;
+  z-index:      4;
+}
+
+/* ──────────────────────────────────────────
+   PRESSED FLOWER VARIANT FRAME
+────────────────────────────────────────── */
+
+.film-frame.pressed-flower {
+  width:      200px;
+  height:     260px;
+  background: #0A0608;
+  display:    flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Override: no amber tint, no grain on pressed-flower frames */
+.film-frame.pressed-flower::before {
+  display: none;
+}
+.film-frame.pressed-flower::after {
+  display: none;
+}
+
+.pressed-flower-svg {
+  width:      140px;
+  height:     140px;
+  opacity:    0.75;
+  transform:  rotate(-8deg);
+  display:    block;
+}
+
+/* ──────────────────────────────────────────
+   QUOTE — bottom of section
+────────────────────────────────────────── */
+
+.s04-quote {
+  position:     absolute;
+  bottom:       32px;
+  width:        100%;
+  text-align:   center;
+  font-family:  var(--font-display);
+  font-size:    var(--size-24);
+  font-style:   italic;
+  color:        var(--deep-antique-rose);
+  z-index:      10;
+  pointer-events: none;
+  padding:      0 var(--section-pad);
+  text-shadow:  0 2px 24px rgba(181, 82, 106, 0.25);
+}
+
+/* ──────────────────────────────────────────
+   MOBILE GRID — hidden on desktop
+   Shown only under @media (max-width: 767px) in responsive-mobile.css
+────────────────────────────────────────── */
+
+.s04-mobile-grid {
+  display: none;
+}

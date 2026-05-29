@@ -1,0 +1,214 @@
+/* ============================================================
+   SECTION-10.CSS — The Money Moment
+   Background: var(--hot-ivory)
+   Bold stamp headline + scattered currency-note decorations.
+   ============================================================ */
+
+/* ── Full-section flex shell ────────────────────────────── */
+.s10-outer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Large headline block ───────────────────────────────── */
+.s10-headline {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-60%);
+  text-align: center;
+}
+
+.s10-headline-line {
+  font-family: var(--font-display);
+  font-size: var(--size-72);
+  font-weight: 600;
+  color: var(--dark-rose-stamp);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  display: block;
+}
+
+/* ── Notes scatter area ─────────────────────────────────── */
+.s10-notes-scatter {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 55%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+/* ── Individual currency note ───────────────────────────── */
+.s10-note {
+  width: 280px;
+  height: 140px;
+  border-radius: 6px;
+  background: var(--warm-cream);
+  border: 1px solid var(--champagne-gold);
+  position: absolute;
+  bottom: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* transform/left set via inline style per note */
+}
+
+/* ── Inner inset border ─────────────────────────────────── */
+.s10-note-inner-border {
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(196, 162, 107, 0.4);
+  pointer-events: none;
+}
+
+/* ── Central name text ──────────────────────────────────── */
+.s10-note-center {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--deep-antique-rose);
+  letter-spacing: 0.2em;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Top strip label ────────────────────────────────────── */
+.s10-note-top-strip {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--font-micro);
+  font-size: 8px;
+  color: var(--champagne-gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ── Bottom strip label ─────────────────────────────────── */
+.s10-note-bottom-strip {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--font-micro);
+  font-size: 8px;
+  color: var(--champagne-gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ── Serial number ──────────────────────────────────────── */
+.s10-note-serial {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-family: var(--font-micro);
+  font-size: 7px;
+  color: rgba(196, 162, 107, 0.4);
+  letter-spacing: 0.1em;
+}
+
+/* ── Medallion circles left / right ─────────────────────── */
+.s10-medallion {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--champagne-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+}
+
+.s10-medallion.left {
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.s10-medallion.right {
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* ── Odd notes: rose / crimson gradient (1,3,5,7,9) ─────── */
+.s10-note:nth-child(odd) {
+  background: linear-gradient(135deg, #B5526A 0%, #8B1A2F 100%);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+.s10-note:nth-child(odd) .s10-note-center {
+  color: rgba(255, 255, 255, 0.92);
+}
+.s10-note:nth-child(odd) .s10-note-top-strip,
+.s10-note:nth-child(odd) .s10-note-bottom-strip,
+.s10-note:nth-child(odd) .s10-note-serial {
+  color: rgba(255, 255, 255, 0.55);
+}
+.s10-note:nth-child(odd) .s10-note-inner-border {
+  border-color: rgba(255, 255, 255, 0.18);
+}
+.s10-note:nth-child(odd) .s10-medallion {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ── Even notes: champagne gold / amber gradient (2,4,6,8,10) */
+.s10-note:nth-child(even) {
+  background: linear-gradient(135deg, #C4A26B 0%, #8A6A30 100%);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+.s10-note:nth-child(even) .s10-note-center {
+  color: rgba(255, 255, 255, 0.92);
+}
+.s10-note:nth-child(even) .s10-note-top-strip,
+.s10-note:nth-child(even) .s10-note-bottom-strip,
+.s10-note:nth-child(even) .s10-note-serial {
+  color: rgba(255, 255, 255, 0.55);
+}
+.s10-note:nth-child(even) .s10-note-inner-border {
+  border-color: rgba(255, 255, 255, 0.18);
+}
+.s10-note:nth-child(even) .s10-medallion {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ── Guilloche pattern overlay ──────────────────────────────
+   Subtle wavy-line security-printing pattern across each note.
+   Applied via ::before pseudo at 8% opacity.
+────────────────────────────────────────── */
+
+.s10-note::before {
+  content:          '';
+  position:         absolute;
+  inset:            0;
+  pointer-events:   none;
+  z-index:          0;
+  opacity:          0.08;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='20'%3E%3Cpath d='M0,10 C10,2 20,18 30,10 C40,2 50,18 60,10 C70,2 80,18 80,10' stroke='white' stroke-width='0.8' fill='none'/%3E%3Cpath d='M0,5 C10,13 20,1 30,5 C40,13 50,1 60,5 C70,13 80,1 80,5' stroke='white' stroke-width='0.5' fill='none' opacity='0.6'/%3E%3Cpath d='M0,15 C10,7 20,19 30,15 C40,7 50,19 60,15 C70,7 80,19 80,15' stroke='white' stroke-width='0.5' fill='none' opacity='0.6'/%3E%3C/svg%3E");
+  background-size:  80px 20px;
+  background-repeat: repeat;
+}
+
+/* ── Corner denomination "26" markers ─────────────────────── */
+.s10-note::after {
+  content:     '26';
+  position:    absolute;
+  top:         4px;
+  left:        6px;
+  font-family: var(--font-micro);
+  font-size:   7px;
+  color:       rgba(255, 255, 255, 0.2);
+  letter-spacing: 0.05em;
+  pointer-events: none;
+  z-index:     1;
+}

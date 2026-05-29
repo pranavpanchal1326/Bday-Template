@@ -1,0 +1,213 @@
+/* ============================================================
+   ANIMATIONS.CSS — Phase 4
+   Initial hidden states set via CSS to prevent FOUC.
+   All animation classes toggled by animations.js / GSAP.
+   ============================================================ */
+
+/* ──────────────────────────────────────────
+   §02 — TITLE REVEAL: lines hidden until JS runs
+────────────────────────────────────────── */
+
+#line-1,
+#line-2,
+#line-3 {
+  opacity:    0;
+  filter:     blur(8px);
+  will-change: opacity, filter;
+}
+
+/* ──────────────────────────────────────────
+   §03 — BOUQUET: hidden until bloom
+────────────────────────────────────────── */
+
+.s03-bouquet-svg {
+  opacity:    0;
+  will-change: transform, opacity;
+}
+
+.s03-quote {
+  opacity: 0;
+}
+
+/* ──────────────────────────────────────────
+   §06 — CAMERA: hidden until sequence
+────────────────────────────────────────── */
+
+.s06-camera-svg {
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: opacity, transform;
+}
+
+.polaroid-card {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.polaroid-caption-text {
+  opacity: 0;
+}
+
+#camera-section-quote {
+  opacity: 0;
+}
+
+/* ──────────────────────────────────────────
+   §09 — LETTER: text hidden until reveal
+────────────────────────────────────────── */
+
+#letter-salutation,
+#letter-text-p1,
+#letter-text-p2,
+#letter-text-p3,
+#letter-closing {
+  opacity:    0;
+  transform:  translateY(10px);
+  will-change: opacity, transform;
+}
+
+/* ──────────────────────────────────────────
+   §10 — MONEY: notes hidden until tumble
+────────────────────────────────────────── */
+
+.s10-note {
+  opacity:    0;
+  will-change: transform, opacity;
+}
+
+#money-headline {
+  opacity: 0;
+}
+
+/* ──────────────────────────────────────────
+   §11 — PETAL / QUOTE
+────────────────────────────────────────── */
+
+#section11-quote {
+  opacity: 0;
+}
+
+/* ──────────────────────────────────────────
+   §12 — CANDLE: flame and text hidden
+────────────────────────────────────────── */
+
+#birthday-text,
+#wish-text {
+  opacity:    0;
+  will-change: opacity;
+}
+
+#candle-flame {
+  opacity:    0;
+  transform:  scale(0);
+  transform-origin: bottom center;
+  will-change: transform, opacity;
+}
+
+/* ──────────────────────────────────────────
+   §12 — CANDLE GLOW: radial pulse
+   Infinite ambient glow on the .s12-glow div.
+────────────────────────────────────────── */
+
+.s12-glow {
+  position:  absolute;
+  bottom:    0;
+  left:      50%;
+  transform: translateX(-50%);
+  width:     300px;
+  height:    300px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse 200px 200px at 50% 50%,
+    rgba(240, 160, 40, 0.18) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  animation: candleGlow 3s ease-in-out infinite;
+}
+
+@keyframes candleGlow {
+  0%,  100% { opacity: 0.6; transform: translateX(-50%) scale(1);   }
+  50%        { opacity: 1;   transform: translateX(-50%) scale(1.08); }
+}
+
+/* ──────────────────────────────────────────
+   §07 — LYRIC WORDS: base state
+   (JS splits and animates, but base ensures no flash)
+────────────────────────────────────────── */
+
+.lyric-word {
+  display:   inline-block;
+  will-change: opacity, transform;
+}
+
+/* ──────────────────────────────────────────
+   §04 — STRIP SPOTLIGHT: ensure z-index above photos
+────────────────────────────────────────── */
+
+#strip-spotlight {
+  z-index:        4;
+  pointer-events: none;
+}
+
+/* ──────────────────────────────────────────
+   FILM BURN — ensure no flash before GSAP sets
+────────────────────────────────────────── */
+
+.film-burn {
+  opacity: 0;
+}
+
+/* ──────────────────────────────────────────
+   prefers-reduced-motion — global override
+   JS also branches, but this ensures CSS-only
+   animations are calmed too.
+────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  #line-1, #line-2, #line-3 {
+    opacity: 1 !important;
+    filter:  none !important;
+    transition: none !important;
+  }
+  .s03-bouquet-svg,
+  .s03-quote,
+  #section11-quote,
+  #camera-section-quote,
+  #money-headline,
+  #polaroid-caption,
+  #letter-salutation,
+  #letter-text-p1,
+  #letter-text-p2,
+  #letter-text-p3,
+  #letter-closing,
+  #birthday-text,
+  #wish-text {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .s10-note {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  #candle-flame {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+  }
+  .s06-camera-svg {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .polaroid-card {
+    opacity: 1 !important;
+  }
+  .polaroid-develop-overlay {
+    opacity: 0 !important;
+  }
+  .s12-glow {
+    animation: none !important;
+  }
+  .film-burn {
+    display: none !important;
+  }
+}

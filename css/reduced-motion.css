@@ -1,0 +1,103 @@
+/* ============================================================
+   REDUCED-MOTION.CSS — Sahiba Birthday Keepsake  [Phase 7]
+   Implements prefers-reduced-motion: reduce overrides.
+   All transform animations are replaced with opacity transitions.
+   GSAP's reducedMotion flag in animations.js handles the rest.
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  /* ── Global: disable all CSS animations and transitions ── */
+  *,
+  *::before,
+  *::after {
+    animation-duration:   0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration:  0.01ms !important;
+    scroll-behavior:      auto !important;
+  }
+
+  /* ── Keep opacity transitions (dignified fades remain) ─── */
+  #line-1, #line-2, #line-3,
+  #letter-salutation, #letter-text-p1, #letter-text-p2,
+  #letter-text-p3, #letter-closing,
+  #birthday-text, #wish-text,
+  #section11-quote, #camera-section-quote,
+  #money-headline, .s03-quote,
+  .polaroid-card, .polaroid-caption-text,
+  .lyric-word {
+    transition: opacity 300ms ease !important;
+    transform:  none !important;
+    animation:  none !important;
+  }
+
+  /* ── Transform-based animated elements: disable transforms ── */
+  .stem-path, .leaf-shape, .rose-petal, .babysbreath-dot,
+  .fallen-petal, .film-frame, .s10-note,
+  #match, #candle-flame,
+  .s03-bouquet-svg {
+    transform: none !important;
+    animation: none !important;
+  }
+
+  /* ── Stroke draw-on animations: keep but slow down ── */
+  .botanical-divider path,
+  #red-thread-path,
+  .ribbon-path {
+    transition: stroke-dashoffset 3s linear !important;
+  }
+
+  /* ── Bouquet breathing loop: off ─────────────────────── */
+  .s03-bouquet-svg {
+    animation: none !important;
+  }
+
+  /* ── Candle flame + match smoke: static ─────────────── */
+  #candle-flame,
+  #match-smoke {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  /* ── Film countdown flicker: off ────────────────────── */
+  #countdown-number {
+    animation:  none !important;
+    transition: none !important;
+  }
+
+  /* ── Waveform bars: static ──────────────────────────── */
+  .s07-bar {
+    animation:  none !important;
+    transition: none !important;
+  }
+
+  /* ── Film strip: no scroll ──────────────────────────── */
+  .s04-frames-row {
+    overflow-x: auto;
+    /* Let user scroll manually */
+  }
+
+  /* ── Pressed flower: no breathing ───────────────────── */
+  .pressed-flower-frame {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  /* ── Petal: static ──────────────────────────────────── */
+  #fallen-petal-single,
+  #petal-shadow {
+    animation:  none !important;
+    transition: opacity 1s ease !important;
+  }
+
+  /* ── Cursor ring: no delayed follow ─────────────────── */
+  #cursor-ring {
+    transition: none !important;
+  }
+
+  /* ── Vignette: no cross-fade ────────────────────────── */
+  #site-scroll > section::before {
+    transition: none !important;
+  }
+
+} /* end prefers-reduced-motion */

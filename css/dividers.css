@@ -1,0 +1,45 @@
+/* ============================================================
+   DIVIDERS.CSS — Botanical Divider Strips
+   Positioned absolutely at the bottom of their parent section.
+   Six variants (a–f) covering stems, eucalyptus, wildflowers,
+   baby's breath, scattered petals, and a single large petal.
+   ============================================================ */
+
+/* ── Base class: shared positioning for all dividers ─────── */
+.botanical-divider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.botanical-divider svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Individual divider IDs ─────────────────────────────────
+   No additional overrides needed beyond .botanical-divider —
+   each variant's visual difference lives in its inline SVG.
+   ──────────────────────────────────────────────────────────── */
+
+/* divider-a: stem + leaves + rose bud */
+#divider-a {}
+
+/* divider-b: eucalyptus branch with drooping oval leaf pairs */
+#divider-b {}
+
+/* divider-c: arching stem with 5 wildflowers */
+#divider-c {}
+
+/* divider-d: baby's breath — thin branches + dot clusters */
+#divider-d {}
+
+/* divider-e: 6 scattered petal shapes, no stems */
+#divider-e {}
+
+/* divider-f: single large centred petal, slight tilt */
+#divider-f {}

@@ -1,0 +1,184 @@
+/* ============================================================
+   SECTION-09.CSS — The Letter / Handwritten Note
+   Background: var(--warm-cream)
+   A paper letter sheet with pressed rose, ruled lines, red thread.
+   ============================================================ */
+
+/* ── Centred shell ──────────────────────────────────────── */
+.s09-outer {
+  position:       absolute;
+  inset:          0;
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  justify-content: flex-start;
+  padding:        32px var(--section-pad) 48px;
+  overflow-y:     auto;
+  scrollbar-width: none;
+}
+.s09-outer::-webkit-scrollbar { display: none; }
+
+
+/* ── Envelope container — Stage A: visible, centred ─────── */
+#envelope-container {
+  position:        relative;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  width:           100%;
+  margin-bottom:   32px;
+  /* starts visible — letter sheet enters from below on stage C */
+}
+
+/* ── Envelope SVG wrapper ────────────────────────────────── */
+.s09-envelope-wrap {
+  position:    relative;
+  display:     inline-block;
+  cursor:      pointer;
+  transition:  transform 400ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  user-select: none;
+}
+.s09-envelope-wrap:hover {
+  transform: translateY(-4px) scale(1.015);
+}
+
+/* ── SVG size ────────────────────────────────────────────── */
+.s09-envelope-svg {
+  width:     340px;
+  max-width: 88vw;
+  height:    auto;
+  display:   block;
+  filter:    drop-shadow(0 6px 20px rgba(100, 60, 60, 0.18));
+}
+
+/* ── Stage B: wax seal cracking (class added by JS) ─────── */
+#envelope-container.stage-b .s09-envelope-svg [id^="seal-crack"] {
+  opacity: 1 !important;
+}
+#envelope-container.stage-b #env-flap-path {
+  transform-origin: 50% 0%;
+  animation:        envFlapCrack 600ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+@keyframes envFlapCrack {
+  0%   { transform: rotateX(0deg);   }
+  40%  { transform: rotateX(-8deg);  }
+  100% { transform: rotateX(-20deg); }
+}
+
+/* ── Stage C: flap open, letter rises (class added by JS) ── */
+#envelope-container.stage-c #env-flap-path {
+  transform-origin: 50% 0%;
+  transform:        rotateX(-160deg);
+  transition:       transform 700ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+#envelope-container.stage-c {
+  margin-bottom: 0;
+  transform:     translateY(-20px);
+  transition:    transform 500ms ease, margin 500ms ease;
+}
+
+
+/* ── Letter paper sheet ─────────────────────────────────── */
+.s09-letter-sheet {
+  width: 680px;
+  max-width: 94vw;
+  background: #FDFAF4;
+  box-shadow: 0 4px 24px rgba(100, 60, 60, 0.12);
+  padding: 60px 72px;
+  position: relative;
+  margin: auto;
+}
+
+/* ── Faint ruled lines on paper ─────────────────────────── */
+.s09-paper-lines {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 27px,
+    rgba(180, 150, 100, 0.08) 27px,
+    rgba(180, 150, 100, 0.08) 28px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Pressed rose watermark top-left ────────────────────── */
+.s09-pressed-rose {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: 80px;
+  height: 80px;
+  opacity: 0.6;
+  transform: rotate(-15deg);
+  z-index: 1;
+}
+
+/* ── Date stamp top-right ───────────────────────────────── */
+.s09-date {
+  position: absolute;
+  top: 32px;
+  right: 40px;
+  font-family: var(--font-micro);
+  font-size: 12px;
+  color: var(--champagne-gold);
+  letter-spacing: 0.1em;
+  font-weight: 300;
+  z-index: 1;
+}
+
+/* ── Letter body typography ─────────────────────────────── */
+.s09-salutation {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-style: italic;
+  color: rgba(26, 16, 20, 0.85);
+  margin-bottom: 2.2rem;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.s09-paragraph {
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-style: italic;
+  color: rgba(26, 16, 20, 0.8);
+  line-height: 1.85;
+  margin-bottom: 1.8rem;
+  max-width: 540px;
+  position: relative;
+  z-index: 1;
+}
+
+.s09-closing {
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-style: italic;
+  color: rgba(26, 16, 20, 0.8);
+  margin-top: 2.2rem;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.s09-signoff {
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-style: italic;
+  color: rgba(26, 16, 20, 0.8);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Red thread wavy line ───────────────────────────────── */
+#red-thread {
+  display: block;
+  margin-top: 8px;
+}

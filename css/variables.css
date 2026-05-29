@@ -1,0 +1,117 @@
+/* ============================================================
+   VARIABLES.CSS — Sahiba Birthday Keepsake
+   Single source of truth for every design token.
+   NOTHING is hardcoded elsewhere — always reference these.
+   ============================================================ */
+
+:root {
+
+  /* ──────────────────────────────────────────
+     COLOUR PALETTE
+  ────────────────────────────────────────── */
+
+  --ivory-parchment:    #FAF3E8;
+  --deep-antique-rose:  #B5526A;
+  --champagne-gold:     #C4A26B;
+  --sage-green:         #7A9478;
+  --dusty-mauve:        #9E6B7F;
+  --blush-mist:         #F0D6D6;
+  --near-black:         #1A1014;
+  --warm-cream:         #F5EDD8;
+  --pressed-petal:      #D4A9B0;
+  --hot-ivory:          #FFFAF0;
+  --dark-rose-stamp:    #8B1A2F;
+  --wax-red:            #8B1A1A;
+  --spotify-green:      #1DB954;
+  --pure-black:         #0D0A0B;
+  --film-amber:         rgba(180, 120, 40, 0.15);
+
+  /* ──────────────────────────────────────────
+     GRADIENTS
+  ────────────────────────────────────────── */
+
+  --gradient-hero: linear-gradient(
+    160deg,
+    var(--ivory-parchment),
+    var(--blush-mist),
+    var(--deep-antique-rose)
+  );
+
+  --gradient-film: linear-gradient(
+    90deg,
+    rgba(10, 6, 8, 0.95),
+    rgba(26, 16, 20, 0.85),
+    rgba(10, 6, 8, 0.95)
+  );
+
+  /* ──────────────────────────────────────────
+     TYPOGRAPHY — FONT FAMILIES
+  ────────────────────────────────────────── */
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-label:   'DM Serif Display', Georgia, serif;
+  --font-micro:   'Jost', sans-serif;
+
+  /* ──────────────────────────────────────────
+     TYPOGRAPHY — TYPE SCALE
+  ────────────────────────────────────────── */
+
+  --size-96: 6rem;
+  --size-72: 4.5rem;
+  --size-64: 4rem;
+  --size-48: 3rem;
+  --size-42: 2.625rem;
+  --size-36: 2.25rem;
+  --size-28: 1.75rem;
+  --size-24: 1.5rem;
+  --size-18: 1.125rem;
+  --size-14: 0.875rem;
+  --size-12: 0.75rem;
+  --size-11: 0.6875rem;
+
+  /* ──────────────────────────────────────────
+     SPACING
+  ────────────────────────────────────────── */
+
+  --section-pad:   5vw;
+  --max-content:   1200px;
+
+  /* ──────────────────────────────────────────
+     ANIMATION TIMING
+     (defined now, activated in later phases)
+  ────────────────────────────────────────── */
+
+  --ease-base:      cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-bloom:     cubic-bezier(0.34, 1.2, 0.64, 1);
+  --dur-micro:      250ms;
+  --dur-component:  700ms;
+  --dur-section:    1500ms;
+  --dur-signature:  3000ms;
+
+  /* ──────────────────────────────────────────
+     MASTER-PROMPT ALIASES
+     The prompt uses --text-XX and --dark-rose naming.
+     These aliases keep both naming systems valid.
+  ────────────────────────────────────────── */
+
+  --text-96: var(--size-96);
+  --text-72: var(--size-72);
+  --text-48: var(--size-48);
+  --text-36: var(--size-36);
+  --text-28: var(--size-28);
+  --text-24: var(--size-24);
+  --text-18: var(--size-18);
+  --text-14: var(--size-14);
+  --text-11: var(--size-11);
+
+  --gradient-warm: linear-gradient(
+    135deg,
+    var(--ivory-parchment),
+    var(--blush-mist),
+    var(--deep-antique-rose)
+  );
+
+  --dark-rose:  #8B1A2F;   /* alias for --dark-rose-stamp */
+  --ease-slow:  cubic-bezier(0.4, 0, 0.2, 1);
+
+}
